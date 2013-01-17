@@ -26,6 +26,8 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 		private var _resizeY:int;		
 		private var resizeInitX:int;
 		private var resizeInitY:int;
+		private var contentPaddingX:int;
+		private var contentPaddingY:int;
 	
 		override public function onRegister():void
 		{
@@ -34,6 +36,8 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 			viewBase.addEventListener(ViewEvent.STOP_DRAG,stopDrag);
 			viewBase.addEventListener(ViewEvent.FRONT_REQUESTED,front);
 			viewBase.addEventListener(ViewEvent.RESIZE,startResize);
+			if (viewBase.panel.closeButtonEnabled)
+				viewBase.panel.close.add(onCloseRequestsed);
 		}
 		
 		protected function startResize(event:ViewEvent):void
@@ -42,21 +46,23 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 			resizeInitY = event.resizeStartY;
 			viewBase.stage.addEventListener(MouseEvent.MOUSE_MOVE, resizeMouseMoveHandler, true);
 			viewBase.stage.addEventListener(MouseEvent.MOUSE_UP, resizeMouseUpHandler, true);
+			contentPaddingX = viewBase.width - viewBase.panel.contentGroup.width;
+			contentPaddingY = viewBase.height - viewBase.panel.contentGroup.height;
 		}
 		
 		protected function resizeMouseMoveHandler(event:MouseEvent):void
 		{
 			event.stopImmediatePropagation();
 			
-			var newWidth:Number = viewBase.width + event.stageX - resizeInitX; 
-			var newHeight:Number = viewBase.height + event.stageY - resizeInitY;
+			var newWidth:Number = viewBase.panel.width + event.stageX - resizeInitX; 
+			var newHeight:Number = viewBase.panel.height + event.stageY - resizeInitY;
 			
 			// restrict the width/height
-			if ((newWidth >= viewBase.minWidth) && (newWidth <= viewBase.maxWidth) && (newWidth >= viewBase.panel.contentGroup.contentWidth)) {
-				viewBase.width = newWidth;
+			if ((newWidth >= viewBase.minWidth) && (newWidth <= viewBase.maxWidth) && (newWidth >= viewBase.panel.contentGroup.contentWidth + contentPaddingX)) {
+				viewBase.width = viewBase.panel.width = newWidth;
 			}
-			if ((newHeight >= viewBase.minHeight) && (newHeight <= viewBase.maxHeight) && (newHeight >= viewBase.panel.contentGroup.contentHeight)) {
-				viewBase.height = newHeight;
+			if ((newHeight >= viewBase.minHeight) && (newHeight <= viewBase.maxHeight) && (newHeight >= viewBase.panel.contentGroup.contentHeight + contentPaddingY)) {
+				viewBase.height = viewBase.panel.height = newHeight;
 			}
 			
 			resizeInitX = event.stageX;
@@ -100,9 +106,11 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 			viewBase.removeEventListener(MouseEvent.MOUSE_UP,stopDrag)
 			viewBase.removeEventListener(ViewEvent.FRONT_REQUESTED,front);
 			viewBase.addEventListener(ViewEvent.RESIZE,startResize);
+			if (viewBase.panel.closeButtonEnabled)
+				viewBase.panel.close.remove(onCloseRequestsed);
 		}
 		
-		protected function onCloseRequestsed(event:Event):void
+		protected function onCloseRequestsed(event:Event = null):void
 		{
 			uiModel.removeView(viewBase);
 		}

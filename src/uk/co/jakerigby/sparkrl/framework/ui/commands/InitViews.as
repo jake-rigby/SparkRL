@@ -1,10 +1,8 @@
 package uk.co.jakerigby.sparkrl.framework.ui.commands
 {
-	import mx.core.UIComponent;
-	
 	import org.robotlegs.mvcs.Command;
 	
-	import spark.components.WindowedApplication;
+	import spark.components.Application;
 	import spark.layouts.BasicLayout;
 	
 	import uk.co.jakerigby.sparkrl.framework.execution.DeferExecution;
@@ -21,7 +19,7 @@ package uk.co.jakerigby.sparkrl.framework.ui.commands
 	
 	public class InitViews extends Command
 	{
-		[Inject] public var app:WindowedApplication;
+		[Inject] public var app:Application;
 		
 		private var _uninitialisedLayers:Vector.<ViewLayer>;
 		

@@ -39,11 +39,15 @@ package uk.co.jakerigby.sparkrl.framework.ui.components
 				panel.addEventListener(MouseEvent.MOUSE_DOWN,onMouseDown);
 				panel.addEventListener(MouseEvent.MOUSE_UP,onMouseUp);
 				
-				if (panel.closeButtonEnabled)
-					panel.close.add(closeNow);
+				//if (panel.closeButtonEnabled)
+					//panel.close.add(closeNow);
 				
 				if (panel.resizeEnabled)
+				{
 					panel.resizeHandle.addEventListener(MouseEvent.MOUSE_DOWN,startResize);
+					//panel.percentHeight = 100;
+					//panel.percentWidth = 100;
+				}
 			}
 		}
 		
@@ -51,8 +55,8 @@ package uk.co.jakerigby.sparkrl.framework.ui.components
 		{
 			super.partRemoved(partName,instance);
 			
-			if (instance == close)
-				close.remove(closeNow);
+			//if (instance == close)
+				//close.remove(closeNow);
 			
 			if (instance == panel)
 			{

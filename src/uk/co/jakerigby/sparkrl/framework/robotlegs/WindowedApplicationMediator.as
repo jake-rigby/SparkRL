@@ -6,7 +6,7 @@ package uk.co.jakerigby.sparkrl.framework.robotlegs
 	
 	import spark.components.Application;
 	
-	public class ApplicationMediator extends Mediator
+	public class WindowedApplicationMediator extends Mediator
 	{
 		[Inject] public var view:Application;
 		
@@ -22,6 +22,5 @@ package uk.co.jakerigby.sparkrl.framework.robotlegs
 			view.width = view.stage.stageWidth;
 			view.height = view.stage.stageHeight;
 		}
-		
 	}
 }
