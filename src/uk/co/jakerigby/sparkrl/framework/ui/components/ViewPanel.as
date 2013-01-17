@@ -12,16 +12,25 @@ package uk.co.jakerigby.sparkrl.framework.ui.components
 	
 	public class ViewPanel extends SkinnableContainer
 	{
-		[SkinPart] public var base:Rect;
+		/**
+		 * SkinParts
+		 */
 		
-		[SkinPart] public var close:Signal;
+		[SkinPart] public var close:Signal;		
 		
 		[SkinPart] public var resizeHandle:Group;
 		
-		[Bindable] public var title:String;
 		
-		[Bindable] public var closeButtonEnabled:Boolean = false;
+		/**
+		 * Settings
+		 */		
 		
-		[Bindable] public var resizeEnabled:Boolean = false;
+		[Bindable] public var title:String;	
+		
+		[Bindable] public var closeButtonEnabled:Boolean = false;		
+		
+		[Bindable] public var resizeEnabled:Boolean = false;		
+		
+		[Bindable] public var includeHeader:Boolean = true;
 	}
 }

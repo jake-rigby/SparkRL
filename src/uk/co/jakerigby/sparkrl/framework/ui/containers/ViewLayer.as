@@ -56,6 +56,9 @@ package uk.co.jakerigby.sparkrl.framework.ui.containers
 
 		public function set maskEnabled(value:Boolean):void
 		{
+			_maskEnabled = value;
+			_mask.visible = value;
+			_mask.includeInLayout = value;
 			if (value) 
 			{
 				addElement(_mask);
@@ -77,9 +80,6 @@ package uk.co.jakerigby.sparkrl.framework.ui.containers
 				fadeOut.addEventListener(EffectEvent.EFFECT_END,fadeOutComplete)
 				fadeOut.play();
 			}
-			_maskEnabled = value;
-			_mask.visible = value;
-			_mask.includeInLayout = value;
 		}
 		
 		protected function fadeComplete(event:EffectEvent):void

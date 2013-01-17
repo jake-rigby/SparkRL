@@ -1,0 +1,55 @@
+/* Flex Overrides */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+s|Button
+{
+	skinClass:ClassReference("uk.co.jakerigby.sparkrl.framework.ui.skins.buttons.ButtonSkin");
+}
+
+s|DropDownList
+{
+	skinClass:ClassReference("uk.co.jakerigby.sparkrl.framework.ui.skins.components.DropDownListSkin")
+}
+
+s|TextInput
+{
+	skinClass:ClassReference("uk.co.jakerigby.sparkrl.framework.ui.skins.components.TextInputSkin")
+}
+
+
+/* Framework */		
+@namespace renderers "uk.co.jakerigby.sparkrl.framework.ui.renderers.*";
+@namespace components "uk.co.jakerigby.sparkrl.framework.ui.components.*";
+
+global
+{
+	fillNormal: #ffffff;
+	fillCompliment: #ff6200;
+	fillOver: #5bffda;			
+	color:#323337;			
+	textOver: #007f62;		
+	borderColor: #323337;
+}
+
+components|ViewPanel
+{
+	skinClass:ClassReference("uk.co.jakerigby.sparkrl.framework.ui.skins.panels.ViewPanelSkin");
+}
+
+components|Alert
+{
+	skinClass:ClassReference("uk.co.jakerigby.sparkrl.framework.ui.skins.components.AlertSkin")
+}
+
+renderers|ItemRenderer
+{
+	skinClass:ClassReference("uk.co.jakerigby.sparkrl.framework.ui.skins.itemRenderers.DefaultItemRendererSkin")
+}
+
+renderers|ItemRendererContainer
+{
+	skinClass:ClassReference("uk.co.jakerigby.sparkrl.framework.ui.skins.itemRenderers.DefaultItemRendererContainerSkin")
+}
+
+

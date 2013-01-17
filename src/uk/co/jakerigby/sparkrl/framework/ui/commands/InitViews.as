@@ -13,7 +13,7 @@ package uk.co.jakerigby.sparkrl.framework.ui.commands
 	import uk.co.jakerigby.sparkrl.framework.ui.components.ViewBase;
 	import uk.co.jakerigby.sparkrl.framework.ui.containers.ViewLayer;
 	import uk.co.jakerigby.sparkrl.framework.ui.enums.ViewMode;
-	import uk.co.jakerigby.sparkrl.framework.ui.events.FrameworkEvent;
+	import uk.co.jakerigby.sparkrl.framework.ui.events.SparkRLEvent;
 	import uk.co.jakerigby.sparkrl.framework.ui.events.ViewTrigger;
 	import uk.co.jakerigby.sparkrl.framework.ui.mediators.LayerMediator;
 	import uk.co.jakerigby.sparkrl.framework.ui.mediators.ViewMediator;
@@ -60,13 +60,16 @@ package uk.co.jakerigby.sparkrl.framework.ui.commands
 			
 			commandMap.mapEvent(ViewTrigger.ADD,AddViewCommand,ViewTrigger);
 			commandMap.mapEvent(ViewTrigger.REMOVE,RemoveUI,ViewTrigger);
+			
+			// When the layers are all added set up the layers
+			commandMap.mapEvent(SparkRLEvent.STARUP_COMPLETE, SetupLayers, SparkRLEvent);
 		}
 		
 		private function layerInitialised(layer:ViewLayer):void
 		{
 			_uninitialisedLayers.splice(_uninitialisedLayers.indexOf(layer),1);
 			if (_uninitialisedLayers.length < 1)
-				eventDispatcher.dispatchEvent(new FrameworkEvent(FrameworkEvent.INITIALISED));			
+				eventDispatcher.dispatchEvent(new SparkRLEvent(SparkRLEvent.STARUP_COMPLETE));			
 		}
 	}
 }

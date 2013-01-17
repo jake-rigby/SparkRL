@@ -29,7 +29,6 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 	
 		override public function onRegister():void
 		{
-			//trace("mediating "+element);
 			viewBase.addEventListener(ViewEvent.CLOSE_REQUESTED,onCloseRequestsed);
 			viewBase.addEventListener(ViewEvent.DRAG,drag);
 			viewBase.addEventListener(ViewEvent.STOP_DRAG,stopDrag);
@@ -74,7 +73,6 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 		protected function stopDrag(event:Event):void
 		{
 			if (uiModel.getMode(viewBase)==ViewMode.MODAL) return;
-			//trace ("stopping dragging "+element);
 			viewBase.stage.removeEventListener(MouseEvent.MOUSE_UP,stopDrag);
 			viewBase.stopDrag();			
 		}
@@ -84,7 +82,6 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 			if (uiModel.getMode(viewBase)==ViewMode.MODAL) return;
 			if (uiModel.isDraggable(viewBase))
 			{
-				//trace ("dragging "+element);
 				viewBase.startDrag();
 				viewBase.stage.addEventListener(MouseEvent.MOUSE_UP,stopDrag);
 			}
@@ -93,13 +90,11 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 		protected function front(event:ViewEvent):void
 		{
 			if (uiModel.getMode(viewBase)==ViewMode.MODAL) return;
-			//trace("bringing to front "+element);
 			uiModel.bringToFront(viewBase);
 		}
 		
 		override public function onRemove():void
 		{
-			//trace("unmediating "+element);
 			viewBase.removeEventListener(ViewEvent.CLOSE_REQUESTED,onCloseRequestsed);
 			viewBase.removeEventListener(MouseEvent.MOUSE_DOWN,drag)
 			viewBase.removeEventListener(MouseEvent.MOUSE_UP,stopDrag)
@@ -109,7 +104,6 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 		
 		protected function onCloseRequestsed(event:Event):void
 		{
-			//trace("closing "+element);
 			uiModel.removeView(viewBase);
 		}
 	}
