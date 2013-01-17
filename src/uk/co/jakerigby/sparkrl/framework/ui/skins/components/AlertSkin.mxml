@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:signals="org.osflash.signals.*"		
+		xmlns:components="uk.co.jakerigby.sparkrl.framework.ui.components.*"
+		
+		width="100%" height="100%" 
+		>
+	
+	<fx:Metadata>[HostComponent("uk.co.jakerigby.sparkrl.framework.ui.components.Alert")]</fx:Metadata>
+		
+	<fx:Declarations>
+		<signals:Signal id="close"/>
+	</fx:Declarations>
+	
+	<components:ViewPanel id="panel" title="Whoospie!" horizontalCenter="0" verticalCenter="0" >		
+		
+		<components:layout>
+			<s:VerticalLayout horizontalAlign="center"/>
+		</components:layout>
+		
+		<s:Label text="{hostComponent.message}" textAlign="center" paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" /> 	
+		<s:Button label="ok" click="{close.dispatch()}"/>
+		
+	</components:ViewPanel>
+</s:Skin>
