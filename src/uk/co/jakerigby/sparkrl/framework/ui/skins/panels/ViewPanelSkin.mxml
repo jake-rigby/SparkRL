@@ -21,7 +21,7 @@
     
 	<s:Rect width="100%" height="100%" id="base">
 		<s:fill>
-			<s:SolidColor color="{getStyle('fillCompliment')}"/>
+			<s:SolidColor color="{hostComponent.includeHeader?getStyle('fillCompliment'):getStyle('fillNormal')}"/>
 		</s:fill>
 	</s:Rect>
 	
@@ -38,7 +38,7 @@
 	</s:Rect>
 	
 	<s:Group top="5" height="20" left="5" right="5">
-		<s:Label verticalCenter="0" left="5" text="{hostComponent.title}" fontWeight="bold" color="{getStyle('color')}"/>
+		<s:Label verticalCenter="0" left="5" text="{hostComponent.title}" fontWeight="bold" color="{getStyle('color')}" visible="{hostComponent.includeHeader}"/>
 		<s:Button skinClass="uk.co.jakerigby.sparkrl.framework.ui.skins.buttons.CloseButtonSkin" visible="{hostComponent.closeButtonEnabled}" right="5" verticalCenter="0" click="{close.dispatch()}"/>
 	</s:Group>
     
