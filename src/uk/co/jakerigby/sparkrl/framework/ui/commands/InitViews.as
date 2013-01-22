@@ -13,8 +13,11 @@ package uk.co.jakerigby.sparkrl.framework.ui.commands
 	import uk.co.jakerigby.sparkrl.framework.ui.enums.ViewMode;
 	import uk.co.jakerigby.sparkrl.framework.ui.events.SparkRLEvent;
 	import uk.co.jakerigby.sparkrl.framework.ui.events.ViewTrigger;
+	import uk.co.jakerigby.sparkrl.framework.ui.functionality.IUpdater;
 	import uk.co.jakerigby.sparkrl.framework.ui.mediators.LayerMediator;
 	import uk.co.jakerigby.sparkrl.framework.ui.mediators.ViewMediator;
+	import uk.co.jakerigby.sparkrl.framework.ui.models.DebugModel;
+	import uk.co.jakerigby.sparkrl.framework.ui.models.UpdaterModel;
 	import uk.co.jakerigby.sparkrl.framework.ui.models.ViewsModel;
 	
 	public class InitViews extends Command
@@ -25,6 +28,13 @@ package uk.co.jakerigby.sparkrl.framework.ui.commands
 		
 		override public function execute():void
 		{
+			// ticker, start immediately by instatiating
+			injector.mapSingletonOf(IUpdater,UpdaterModel);				
+			injector.getInstance(IUpdater);
+			
+			// debugger - dependency on ticker (remove)
+			injector.mapSingleton(DebugModel);
+			
 			// create the Views model
 			injector.mapSingleton(ViewsModel);
 			

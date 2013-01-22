@@ -32,6 +32,11 @@ global
 	borderColor: #323337;
 }
 
+components|DebugValuesView
+{
+	skinClass:ClassReference("uk.co.jakerigby.sparkrl.framework.ui.skins.components.DebugValuesSkin")
+}
+
 components|ViewPanel
 {
 	skinClass:ClassReference("uk.co.jakerigby.sparkrl.framework.ui.skins.panels.ViewPanelSkin");

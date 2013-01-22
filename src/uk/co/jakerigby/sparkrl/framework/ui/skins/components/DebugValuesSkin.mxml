@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" 
+		xmlns:components="uk.co.jakerigby.sparkrl.framework.ui.components.*" 
+		xmlns:renderers="uk.co.jakerigby.sparkrl.framework.ui.renderers.*"
+		>
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("uk.co.jakerigby.sparkrl.framework.ui.components.DebugValuesView")]
+	</fx:Metadata>
+	
+	<!-- SkinParts
+	name=panel, type=uk.co.jakerigby.sparkrl.framework.ui.components.ViewPanel, required=false
+	name=close, type=org.osflash.signals.Signal, required=false
+	-->
+	
+	<components:ViewPanel title="Property Watcher" id="panel" includeHeader="false" resizeEnabled="false">
+		
+		<s:DataGroup id="values">
+			<s:layout>
+				<s:VerticalLayout/>
+			</s:layout>
+			<s:itemRenderer>
+				<fx:Component>
+					<renderers:ItemRendererContainer>
+						<renderers:layout>
+							<s:HorizontalLayout/>
+						</renderers:layout>
+						<s:Label text="{data.instance}"/>
+						<s:Label text="{data.property}"/>
+						<s:Label text="{data.value}"/>
+					</renderers:ItemRendererContainer>
+				</fx:Component>
+			</s:itemRenderer>
+		</s:DataGroup>
+		
+	</components:ViewPanel>
+</s:Skin>

@@ -9,6 +9,7 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 	import uk.co.jakerigby.sparkrl.framework.ui.components.ViewBase;
 	import uk.co.jakerigby.sparkrl.framework.ui.enums.ViewMode;
 	import uk.co.jakerigby.sparkrl.framework.ui.events.ViewEvent;
+	import uk.co.jakerigby.sparkrl.framework.ui.models.DebugModel;
 	import uk.co.jakerigby.sparkrl.framework.ui.models.ViewsModel;
 	
 	/**
@@ -21,6 +22,8 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 		
 		[Inject] public var uiModel:ViewsModel;
 		[Inject] public var viewBase:ViewBase;
+		
+		[Inject] public var debug:DebugModel;
 		
 		private var _resizeX:int;
 		private var _resizeY:int;		
@@ -42,6 +45,8 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 		
 		protected function startResize(event:ViewEvent):void
 		{
+			debug.watch(viewBase,"width");
+			
 			resizeInitX = event.resizeStartX;
 			resizeInitY = event.resizeStartY;
 			viewBase.stage.addEventListener(MouseEvent.MOUSE_MOVE, resizeMouseMoveHandler, true);
@@ -58,10 +63,12 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 			var newHeight:Number = viewBase.panel.height + event.stageY - resizeInitY;
 			
 			// restrict the width/height
-			if ((newWidth >= viewBase.minWidth) && (newWidth <= viewBase.maxWidth) && (newWidth >= viewBase.panel.contentGroup.contentWidth + contentPaddingX)) {
+			//if ((newWidth >= viewBase.minWidth) && (newWidth <= viewBase.maxWidth) && (newWidth >= viewBase.panel.contentGroup.contentWidth + contentPaddingX)) {
+			if ((newWidth >= viewBase.minWidth) && (newWidth <= viewBase.maxWidth) && (newWidth >= contentPaddingX)){
 				viewBase.width = viewBase.panel.width = newWidth;
 			}
-			if ((newHeight >= viewBase.minHeight) && (newHeight <= viewBase.maxHeight) && (newHeight >= viewBase.panel.contentGroup.contentHeight + contentPaddingY)) {
+			//if ((newHeight >= viewBase.minHeight) && (newHeight <= viewBase.maxHeight) && (newHeight >= viewBase.panel.contentGroup.contentHeight + contentPaddingY)) {
+			if ((newHeight >= viewBase.minHeight) && (newHeight <= viewBase.maxHeight) && (newHeight >= contentPaddingY)){
 				viewBase.height = viewBase.panel.height = newHeight;
 			}
 			
@@ -71,6 +78,8 @@ package uk.co.jakerigby.sparkrl.framework.ui.mediators
 		
 		protected function resizeMouseUpHandler(event:MouseEvent):void
 		{
+			debug.unwatch(viewBase,"width");
+			
 			event.stopImmediatePropagation();
 			viewBase.stage.removeEventListener(MouseEvent.MOUSE_MOVE, resizeMouseMoveHandler, true);
 			viewBase.stage.removeEventListener(MouseEvent.MOUSE_UP, resizeMouseUpHandler, true);

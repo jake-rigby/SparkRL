@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
-		alpha.disabled="0.5" xmlns:signals="org.osflash.signals.*" >
+		alpha.disabled="0.5" xmlns:signals="org.osflash.signals.*"  >
 	
 	<fx:Metadata>[HostComponent("uk.co.jakerigby.sparkrl.framework.ui.components.ViewPanel")]</fx:Metadata>
 	
@@ -38,7 +38,7 @@
 	</s:Rect>
 	
 	<s:Group top="5" height="20" left="5" right="5">
-		<s:Label verticalCenter="0" left="5" text="{hostComponent.title}" fontWeight="bold" color="{getStyle('color')}" visible="{hostComponent.includeHeader}"/>
+		<s:Label verticalCenter="0" left="5" text="{hostComponent.title}" fontWeight="bold" color="{getStyle('color')}"/>
 		<s:Button skinClass="uk.co.jakerigby.sparkrl.framework.ui.skins.buttons.CloseButtonSkin" visible="{hostComponent.closeButtonEnabled}" right="5" verticalCenter="0" click="{close.dispatch()}"/>
 	</s:Group>
     
@@ -50,7 +50,7 @@
     <!--- @copy spark.components.SkinnableContainer#contentGroup -->
 	<s:Group id="contentGroup" left="20" right="20" top="50" bottom="25"  minWidth="0" minHeight="0" clipAndEnableScrolling="true"/>
 	
-	<s:Group id="resizeHandle" bottom="0" right="0" visible="{hostComponent.resizeEnabled}" >
+	<s:Group id="resizeHandle" bottom="0" right="0" visible="{hostComponent.resizeEnabled}" buttonMode="true" >
 		<s:Rect width="20" height="20" alpha="0">
 			<s:fill>
 				<s:SolidColor/>
